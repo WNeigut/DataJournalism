@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About My Project</title>
+    <title>About: Wyatt Neigut's Data Journalism Project</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,6 +23,7 @@
         }
     </style>
 </head>
+{% include 'bar.html' %}
 <body>
     <div class="container">
         <h1>About the Historical CPI - </h1>
@@ -34,5 +35,16 @@
         <h2>Contact</h2>
         <p>If you have any questions or feedback, please contact me at [wyatt.neigut24@trinityschoolnyc.org].</p>
     </div>
+    <h5>
+        My data cleansing pipeline:
+        <ol>
+          <li>Imported my data into Google Sheets and cleansed it of unnecessary information.</li>
+          <li>Combined and organized the dataset into a dictionary (by year, and then by category of food)</li>
+          <li>Insert</li>
+          <li>Insert</li>
+          <li>Insert</li>
+        </ol>
+      </h5>
+{% include 'footer.html' %}
 </body>
 </html>

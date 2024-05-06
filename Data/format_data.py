@@ -14,6 +14,6 @@ def csv_to_json(csv_file, json_file):
         json.dump(data, jsonfile, indent=4)
 
 if __name__ == "__main__":
-    csv_file = "HistoricalCPI.csv"
+    csv_file = "Data/HistoricalCPI.csv"
     json_file = "data.json"
     csv_to_json(csv_file, json_file)

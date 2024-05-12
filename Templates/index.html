@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Journalism Project Main Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+{% include 'bar.html' %}
+<body>
+  <h1>Data Journalism Project - Wyatt Neigut</h1>
+  <div id="trendGraph">
+
+  </div>
+  <h5>Scatter plots are generally used to show a trend. However, here there is no observable trendline.
+    <br> This means that GDP per capita and alcohol consumption are not related to each other.
+  </h5><br>
+  <script>
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+    });
+</script>
+</body>
+{%include 'footer.html'%}
+</html>

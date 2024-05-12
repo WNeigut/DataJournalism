@@ -3,7 +3,6 @@ import json
 import math
 
 app = Flask(__name__)
-Bootstrap(app)
 
 @app.route('/')
 def index():
@@ -11,7 +10,11 @@ def index():
     data = json.load(f)
     f.close()
     
+    return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/data', methods=['GET'])
 def get_data():

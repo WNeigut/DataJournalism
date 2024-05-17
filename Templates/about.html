@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About: Wyatt Neigut's Data Journalism Project</title>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,26 +28,35 @@
 </head>
 {% include 'bar.html' %}
 <body>
-    <div class="container">
-        <h1>About the Historical CPI - </h1>
-        <p>Here's a brief description of the project:</p>
+    <div style="margin-left:15px">
+        <h1>About the Historical Consumer Price Index</h1>
+        <p>Here's a brief description of the project:
+            My project is about how the price of food has increased since 1974. From 1974 to 2022, I found data on multiple different categories of food. Some examples are fruit prices, dairy products, meat prices, etc.
+        </p>
 
-        <h2>Data Cleansing Pipeline</h2>
-        <p>The data cleansing process consists of several steps to clean and format the data for analysis. The main script responsible for formatting the data is <a href="data/format_data.py">format_data.py</a>. This converts the cleansed CSV data into a JSON object formatted for generating SVG graphs.</p>
+        <h1>Data Cleansing Pipeline</h1>
+        <p>The data cleansing process consists of several steps to clean and format the data for analysis. This converts the cleansed CSV data into a JSON object formatted for generating SVG graphs.</p>
 
-        <h2>Contact</h2>
-        <p>If you have any questions or feedback, please contact me at [wyatt.neigut24@trinityschoolnyc.org].</p>
-    </div>
-    <h5>
+    <h1>
         My data cleansing pipeline:
+    </h1>
+    <p>
         <ol>
-          <li>Imported my data into Google Sheets and cleansed it of unnecessary information.</li>
-          <li>Combined and organized the dataset into a dictionary (by year, and then by category of food)</li>
-          <li>Insert</li>
-          <li>Insert</li>
-          <li>Insert</li>
+          <li>First, I found a set of data on Google that contained data about tons of different types of food.</li>
+          <li>I then imported my data into Google Sheets and cleansed it of unnecessary information.</li>
+          <li>Next, I downloaded the Sheet data as a CSV and imported it into VS Code.</li>
+          <li>Finally, I combined and organized the dataset into a dictionary (by year, and then by category of food)</li>
         </ol>
-      </h5>
+    </p>
+
+    <h2>Prototyping:</h2>
+            <img src="Static/macro.jpg" height="500"> 
+            <img src="Static/micro.jpg" height="500">
+
+    <h2>Contact:</h2>
+        <p>If you have any questions or feedback, please contact me at [wyatt.neigut24@trinityschoolnyc.org].</p>
+
 {% include 'footer.html' %}
+</div>
 </body>
 </html>

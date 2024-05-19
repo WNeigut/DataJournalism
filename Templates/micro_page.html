@@ -2,15 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{Micro Page}}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro Model</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .chart-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .chart-item .label {
+            width: 150px; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .chart-item .bar-container {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            height: 20px;
+            margin-left: 10px;
+            position: relative;
+        }
+        .chart-item .bar {
+            height: 100%;
+            color: black;
+            text-align: right;
+            padding-right: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .chart-item .divider {
+            width: 2px;
+            background-color: black; 
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
-    {% include 'navbar.html' %}
+    {% include 'bar.html' %}
     <div class="container">
-        <h1>{{ page_name }}</h1>
-        <p>This is the {{ page_name }} page.</p>
+        <h1>Food Price Changes for <span id="food-type">{{ data['Consumer Price Index item'] }}</span></h1>
+        <div id="chart-container"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = {{ data | tojson }};
+            const colors = ['#90EE90', '#00FF00', '#32CD32', '#ADD8E6', '#0000FF', '#000080'];
+
+            function getColor(percentage) {
+                if (percentage > 100) {
+                    return colors[5];
+                } else if (percentage > 75) {
+                    return colors[4];
+                } else if (percentage > 50) {
+                    return colors[3];
+                } else if (percentage > 25) {
+                    return colors[2];
+                } else if (percentage >= 0) {
+                    return colors[1];
+                } else {
+                    return colors[0];
+                }
+            }
+
+            function getTextColor(percentage) {
+                if (percentage > 75) {
+                    return 'white';
+                } else {
+                    return 'black';
+                }
+            }
+
+            const container = document.getElementById('chart-container');
+            const firstYear = Object.keys(data).find(key => key !== 'Consumer Price Index item');
+            const firstYearValue = parseFloat(data[firstYear]);
+
+            for (const year in data) {
+                if (year !== 'Consumer Price Index item') {
+                    const div = document.createElement('div');
+                    div.className = 'chart-item';
+
+                    const label = document.createElement('div');
+                    label.className = 'label';
+                    label.innerText = `${year}`;
+
+                    const barContainer = document.createElement('div');
+                    barContainer.className = 'bar-container';
+
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    const percentage = parseFloat(data[year]);
+                    bar.style.backgroundColor = getColor(percentage);
+                    bar.style.color = getTextColor(percentage);
+                    bar.style.width = '50%'; 
+                    bar.innerText = `${percentage}%`;
+
+                    const divider = document.createElement('div');
+                    divider.className = 'divider';
+
+                    const increaseBar = document.createElement('div');
+                    increaseBar.className = 'bar';
+                    const increaseSinceFirstYear = ((percentage - firstYearValue) / firstYearValue) * 100;
+                    increaseBar.style.backgroundColor = getColor(increaseSinceFirstYear);
+                    increaseBar.style.color = getTextColor(increaseSinceFirstYear);
+                    increaseBar.style.width = '50%';
+                    increaseBar.innerText = `${increaseSinceFirstYear.toFixed(2)}%`;
+
+                    barContainer.appendChild(bar);
+                    barContainer.appendChild(divider);
+                    barContainer.appendChild(increaseBar);
+
+                    div.appendChild(label);
+                    div.appendChild(barContainer);
+                    container.appendChild(div);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
